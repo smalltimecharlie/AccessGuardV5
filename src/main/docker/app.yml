@@ -1,0 +1,15 @@
+version: '2'
+services:
+    accessguardv5-app:
+        image: accessguardv5
+        environment:
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mariadb://accessguardv5-mariadb:3306/accessguardv5
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    accessguardv5-mariadb:
+        extends:
+            file: mariadb.yml
+            service: accessguardv5-mariadb
