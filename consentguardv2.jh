@@ -1,0 +1,83 @@
+
+
+entity AgreementType {
+    agreementUrl String,
+    agreementTypeName String
+    agreementTypeStartDate Instant,
+    agreementTypeEndDate Instant
+}
+
+entity Agreement {
+	agreementName String,
+    agreementStartDate Instant,
+    agreementEndDate Instant,
+    sourceId String,
+    source String
+}
+
+entity NightingaleUser {
+    email String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/),
+    active Boolean required,
+    cognitoUsername String,
+    cognitoEvent AnyBlob,
+    cognitoSignupDate Instant    
+}
+
+entity AgreementOrganisation
+{
+    sourceSystemAgreementId String required,
+    agreementType String required,
+	agreementName String,
+    organisation String,
+    agreementStatus String required,
+    createdDate Instant 
+}
+
+entity OrganisationEndpoint
+{	
+    organisation String required,
+    connectionUri String required,
+    active Boolean required
+    }
+
+
+entity Products{
+	productName String required,
+    productUrl String required
+}
+
+entity ProductsUsers{
+	email String required pattern(/^[^@\s]+@[^@\s]+\.[^@\s]+$/),
+    active Boolean
+}
+
+entity LocationType{
+	locationTypeName String,
+    active Boolean
+}
+
+entity EndpointType{
+	endpointTypeName String,
+    active Boolean
+}
+
+
+
+
+relationship ManyToOne {
+    Agreement{agreenmentType(agreementTypeName)} to AgreementType,
+    OrganisationEndpoint{agreementOrganisation(organisation)} to AgreementOrganisation,
+    AgreementOrganisation{agreement(agreementName)} to Agreement,
+    NightingaleUser{agreementOrganisation(organisation)} to AgreementOrganisation
+    //NightingaleUser{nightingaleUser(email)} to ProductsUsers
+}
+
+
+relationship OneToOne {
+	OrganisationEndpoint{locationType(locationTypeName)} to LocationType,
+    OrganisationEndpoint{endpointType(endpointTypeName)} to EndpointType,
+    ProductsUsers to Products
+}
+
+
+
