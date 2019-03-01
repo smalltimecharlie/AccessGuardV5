@@ -1,0 +1,52 @@
+{
+    "name": "NightingaleUser",
+    "fields": [
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "cognitoUsername",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cognitoEvent",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "cognitoSignupDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "agreementOrganisation",
+            "otherEntityRelationshipName": "nightingaleUser",
+            "relationshipName": "agreementOrganisation",
+            "otherEntityField": "organisation"
+        }
+    ],
+    "changelogDate": "20190301151033",
+    "entityTableName": "nightingale_user",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

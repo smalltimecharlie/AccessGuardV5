@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity OrganisationEndpoint.
+    -->
+    <changeSet id="20190301151035-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="location_type_id"
+                                 baseTableName="organisation_endpoint"
+                                 constraintName="fk_organisation_endpoint_location_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="location_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="endpoint_type_id"
+                                 baseTableName="organisation_endpoint"
+                                 constraintName="fk_organisation_endpoint_endpoint_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="endpoint_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="agreement_organisation_id"
+                                 baseTableName="organisation_endpoint"
+                                 constraintName="fk_organisation_endpoint_agreement_organisation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="agreement_organisation"/>
+
+    </changeSet>
+</databaseChangeLog>

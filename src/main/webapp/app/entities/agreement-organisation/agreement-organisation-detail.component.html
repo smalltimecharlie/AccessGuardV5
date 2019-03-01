@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="agreementOrganisation">
+            <h2><span>Agreement Organisation</span> {{agreementOrganisation.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Source System Agreement Id</span></dt>
+                <dd>
+                    <span>{{agreementOrganisation.sourceSystemAgreementId}}</span>
+                </dd>
+                <dt><span>Agreement Type</span></dt>
+                <dd>
+                    <span>{{agreementOrganisation.agreementType}}</span>
+                </dd>
+                <dt><span>Agreement Name</span></dt>
+                <dd>
+                    <span>{{agreementOrganisation.agreementName}}</span>
+                </dd>
+                <dt><span>Organisation</span></dt>
+                <dd>
+                    <span>{{agreementOrganisation.organisation}}</span>
+                </dd>
+                <dt><span>Agreement Status</span></dt>
+                <dd>
+                    <span>{{agreementOrganisation.agreementStatus}}</span>
+                </dd>
+                <dt><span>Created Date</span></dt>
+                <dd>
+                    <span>{{agreementOrganisation.createdDate}}</span>
+                </dd>
+                <dt><span>Agreement</span></dt>
+                <dd>
+                    <div *ngIf="agreementOrganisation.agreement">
+                        <a [routerLink]="['/agreement', agreementOrganisation.agreement?.id, 'view']">{{agreementOrganisation.agreement?.agreementName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/agreement-organisation', agreementOrganisation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

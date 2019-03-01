@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-organisation-endpoint-heading">Create or edit a Organisation Endpoint</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!organisationEndpoint.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="organisationEndpoint.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_organisation">Organisation</label>
+                    <input type="text" class="form-control" name="organisation" id="field_organisation"
+                        [(ngModel)]="organisationEndpoint.organisation" required/>
+                    <div [hidden]="!(editForm.controls.organisation?.dirty && editForm.controls.organisation?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.organisation?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_connectionUri">Connection Uri</label>
+                    <input type="text" class="form-control" name="connectionUri" id="field_connectionUri"
+                        [(ngModel)]="organisationEndpoint.connectionUri" required/>
+                    <div [hidden]="!(editForm.controls.connectionUri?.dirty && editForm.controls.connectionUri?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.connectionUri?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_active">Active</label>
+                    <input type="checkbox" class="form-control" name="active" id="field_active"
+                        [(ngModel)]="organisationEndpoint.active" />
+                    <div [hidden]="!(editForm.controls.active?.dirty && editForm.controls.active?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.active?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_locationType">Location Type</label>
+                    <select class="form-control" id="field_locationType" name="locationType" [(ngModel)]="organisationEndpoint.locationType">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="locationTypeOption.id === organisationEndpoint.locationType?.id ? organisationEndpoint.locationType : locationTypeOption" *ngFor="let locationTypeOption of locationtypes; trackBy: trackLocationTypeById">{{locationTypeOption.locationTypeName}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_endpointType">Endpoint Type</label>
+                    <select class="form-control" id="field_endpointType" name="endpointType" [(ngModel)]="organisationEndpoint.endpointType">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="endpointTypeOption.id === organisationEndpoint.endpointType?.id ? organisationEndpoint.endpointType : endpointTypeOption" *ngFor="let endpointTypeOption of endpointtypes; trackBy: trackEndpointTypeById">{{endpointTypeOption.endpointTypeName}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_agreementOrganisation">Agreement Organisation</label>
+                    <select class="form-control" id="field_agreementOrganisation" name="agreementOrganisation" [(ngModel)]="organisationEndpoint.agreementOrganisation" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="agreementOrganisationOption.id === organisationEndpoint.agreementOrganisation?.id ? organisationEndpoint.agreementOrganisation : agreementOrganisationOption" *ngFor="let agreementOrganisationOption of agreementorganisations; trackBy: trackAgreementOrganisationById">{{agreementOrganisationOption.organisation}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

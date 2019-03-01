@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="nightingaleUser">
+            <h2><span>Nightingale User</span> {{nightingaleUser.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Email</span></dt>
+                <dd>
+                    <span>{{nightingaleUser.email}}</span>
+                </dd>
+                <dt><span>Active</span></dt>
+                <dd>
+                    <span>{{nightingaleUser.active}}</span>
+                </dd>
+                <dt><span>Cognito Username</span></dt>
+                <dd>
+                    <span>{{nightingaleUser.cognitoUsername}}</span>
+                </dd>
+                <dt><span>Cognito Event</span></dt>
+                <dd>
+                    <div *ngIf="nightingaleUser.cognitoEvent">
+                        <a (click)="openFile(nightingaleUser.cognitoEventContentType, nightingaleUser.cognitoEvent)">open</a>
+                        {{nightingaleUser.cognitoEventContentType}}, {{byteSize(nightingaleUser.cognitoEvent)}}
+                    </div>
+                </dd>
+                <dt><span>Cognito Signup Date</span></dt>
+                <dd>
+                    <span>{{nightingaleUser.cognitoSignupDate}}</span>
+                </dd>
+                <dt><span>Agreement Organisation</span></dt>
+                <dd>
+                    <div *ngIf="nightingaleUser.agreementOrganisation">
+                        <a [routerLink]="['/agreement-organisation', nightingaleUser.agreementOrganisation?.id, 'view']">{{nightingaleUser.agreementOrganisation?.organisation}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/nightingale-user', nightingaleUser.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

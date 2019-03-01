@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="productsUsers">
+            <h2><span>Products Users</span> {{productsUsers.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Email</span></dt>
+                <dd>
+                    <span>{{productsUsers.email}}</span>
+                </dd>
+                <dt><span>Active</span></dt>
+                <dd>
+                    <span>{{productsUsers.active}}</span>
+                </dd>
+                <dt><span>Products</span></dt>
+                <dd>
+                    <div *ngIf="productsUsers.products">
+                        <a [routerLink]="['/products', productsUsers.products?.id, 'view']">{{productsUsers.products?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/products-users', productsUsers.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

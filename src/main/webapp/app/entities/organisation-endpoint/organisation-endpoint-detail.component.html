@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="organisationEndpoint">
+            <h2><span>Organisation Endpoint</span> {{organisationEndpoint.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Organisation</span></dt>
+                <dd>
+                    <span>{{organisationEndpoint.organisation}}</span>
+                </dd>
+                <dt><span>Connection Uri</span></dt>
+                <dd>
+                    <span>{{organisationEndpoint.connectionUri}}</span>
+                </dd>
+                <dt><span>Active</span></dt>
+                <dd>
+                    <span>{{organisationEndpoint.active}}</span>
+                </dd>
+                <dt><span>Location Type</span></dt>
+                <dd>
+                    <div *ngIf="organisationEndpoint.locationType">
+                        <a [routerLink]="['/location-type', organisationEndpoint.locationType?.id, 'view']">{{organisationEndpoint.locationType?.locationTypeName}}</a>
+                    </div>
+                </dd>
+                <dt><span>Endpoint Type</span></dt>
+                <dd>
+                    <div *ngIf="organisationEndpoint.endpointType">
+                        <a [routerLink]="['/endpoint-type', organisationEndpoint.endpointType?.id, 'view']">{{organisationEndpoint.endpointType?.endpointTypeName}}</a>
+                    </div>
+                </dd>
+                <dt><span>Agreement Organisation</span></dt>
+                <dd>
+                    <div *ngIf="organisationEndpoint.agreementOrganisation">
+                        <a [routerLink]="['/agreement-organisation', organisationEndpoint.agreementOrganisation?.id, 'view']">{{organisationEndpoint.agreementOrganisation?.organisation}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/organisation-endpoint', organisationEndpoint.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

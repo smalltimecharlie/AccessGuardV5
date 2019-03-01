@@ -1,0 +1,23 @@
+{
+    "name": "LocationType",
+    "fields": [
+        {
+            "fieldName": "locationTypeName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190301151038",
+    "entityTableName": "location_type",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

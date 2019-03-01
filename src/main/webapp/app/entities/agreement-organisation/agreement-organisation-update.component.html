@@ -1,0 +1,81 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-agreement-organisation-heading">Create or edit a Agreement Organisation</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!agreementOrganisation.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="agreementOrganisation.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_sourceSystemAgreementId">Source System Agreement Id</label>
+                    <input type="text" class="form-control" name="sourceSystemAgreementId" id="field_sourceSystemAgreementId"
+                        [(ngModel)]="agreementOrganisation.sourceSystemAgreementId" required/>
+                    <div [hidden]="!(editForm.controls.sourceSystemAgreementId?.dirty && editForm.controls.sourceSystemAgreementId?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.sourceSystemAgreementId?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_agreementType">Agreement Type</label>
+                    <input type="text" class="form-control" name="agreementType" id="field_agreementType"
+                        [(ngModel)]="agreementOrganisation.agreementType" required/>
+                    <div [hidden]="!(editForm.controls.agreementType?.dirty && editForm.controls.agreementType?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.agreementType?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_agreementName">Agreement Name</label>
+                    <input type="text" class="form-control" name="agreementName" id="field_agreementName"
+                        [(ngModel)]="agreementOrganisation.agreementName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_organisation">Organisation</label>
+                    <input type="text" class="form-control" name="organisation" id="field_organisation"
+                        [(ngModel)]="agreementOrganisation.organisation" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_agreementStatus">Agreement Status</label>
+                    <input type="text" class="form-control" name="agreementStatus" id="field_agreementStatus"
+                        [(ngModel)]="agreementOrganisation.agreementStatus" required/>
+                    <div [hidden]="!(editForm.controls.agreementStatus?.dirty && editForm.controls.agreementStatus?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.agreementStatus?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_createdDate">Created Date</label>
+                    <div class="d-flex">
+                        <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" [(ngModel)]="createdDate" placeholder="YYYY-MM-DD HH:mm"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_agreement">Agreement</label>
+                    <select class="form-control" id="field_agreement" name="agreement" [(ngModel)]="agreementOrganisation.agreement" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="agreementOption.id === agreementOrganisation.agreement?.id ? agreementOrganisation.agreement : agreementOption" *ngFor="let agreementOption of agreements; trackBy: trackAgreementById">{{agreementOption.agreementName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
