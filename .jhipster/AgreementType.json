@@ -1,0 +1,31 @@
+{
+    "name": "AgreementType",
+    "fields": [
+        {
+            "fieldName": "agreementUrl",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "agreementTypeName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "agreementTypeStartDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "agreementTypeEndDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190301151031",
+    "entityTableName": "agreement_type",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

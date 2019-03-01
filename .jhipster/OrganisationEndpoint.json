@@ -1,0 +1,60 @@
+{
+    "name": "OrganisationEndpoint",
+    "fields": [
+        {
+            "fieldName": "organisation",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "connectionUri",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "locationType",
+            "otherEntityRelationshipName": "organisationEndpoint",
+            "relationshipName": "locationType",
+            "otherEntityField": "locationTypeName",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "endpointType",
+            "otherEntityRelationshipName": "organisationEndpoint",
+            "relationshipName": "endpointType",
+            "otherEntityField": "endpointTypeName",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "agreementOrganisation",
+            "otherEntityRelationshipName": "organisationEndpoint",
+            "relationshipName": "agreementOrganisation",
+            "otherEntityField": "organisation"
+        }
+    ],
+    "changelogDate": "20190301151035",
+    "entityTableName": "organisation_endpoint",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

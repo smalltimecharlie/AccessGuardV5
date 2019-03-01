@@ -1,0 +1,43 @@
+{
+    "name": "Agreement",
+    "fields": [
+        {
+            "fieldName": "agreementName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "agreementStartDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "agreementEndDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "sourceId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "source",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "agreementType",
+            "otherEntityRelationshipName": "agreement",
+            "relationshipName": "agreenmentType",
+            "otherEntityField": "agreementTypeName"
+        }
+    ],
+    "changelogDate": "20190301151032",
+    "entityTableName": "agreement",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

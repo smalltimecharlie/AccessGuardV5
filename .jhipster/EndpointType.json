@@ -1,0 +1,23 @@
+{
+    "name": "EndpointType",
+    "fields": [
+        {
+            "fieldName": "endpointTypeName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190301151039",
+    "entityTableName": "endpoint_type",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,76 @@
+<div>
+    <h2 id="page-heading">
+        <span>Organisation Endpoints</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-organisation-endpoint" [routerLink]="['/organisation-endpoint/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Organisation Endpoint
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="organisationEndpoints">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Organisation</span></th>
+            <th><span>Connection Uri</span></th>
+            <th><span>Active</span></th>
+            <th><span>Location Type</span></th>
+            <th><span>Endpoint Type</span></th>
+            <th><span>Agreement Organisation</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let organisationEndpoint of organisationEndpoints ;trackBy: trackId">
+                <td><a [routerLink]="['/organisation-endpoint', organisationEndpoint.id, 'view' ]">{{organisationEndpoint.id}}</a></td>
+                <td>{{organisationEndpoint.organisation}}</td>
+                <td>{{organisationEndpoint.connectionUri}}</td>
+                <td>{{organisationEndpoint.active}}</td>
+                <td>
+                    <div *ngIf="organisationEndpoint.locationType">
+                        <a [routerLink]="['../location-type', organisationEndpoint.locationType?.id, 'view' ]" >{{organisationEndpoint.locationType?.locationTypeName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="organisationEndpoint.endpointType">
+                        <a [routerLink]="['../endpoint-type', organisationEndpoint.endpointType?.id, 'view' ]" >{{organisationEndpoint.endpointType?.endpointTypeName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="organisationEndpoint.agreementOrganisation">
+                        <a [routerLink]="['../agreement-organisation', organisationEndpoint.agreementOrganisation?.id, 'view' ]" >{{organisationEndpoint.agreementOrganisation?.organisation}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/organisation-endpoint', organisationEndpoint.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/organisation-endpoint', organisationEndpoint.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'organisation-endpoint', { outlets: { popup: organisationEndpoint.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

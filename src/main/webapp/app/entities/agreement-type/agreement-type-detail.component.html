@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="agreementType">
+            <h2><span>Agreement Type</span> {{agreementType.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Agreement Url</span></dt>
+                <dd>
+                    <span>{{agreementType.agreementUrl}}</span>
+                </dd>
+                <dt><span>Agreement Type Name</span></dt>
+                <dd>
+                    <span>{{agreementType.agreementTypeName}}</span>
+                </dd>
+                <dt><span>Agreement Type Start Date</span></dt>
+                <dd>
+                    <span>{{agreementType.agreementTypeStartDate}}</span>
+                </dd>
+                <dt><span>Agreement Type End Date</span></dt>
+                <dd>
+                    <span>{{agreementType.agreementTypeEndDate}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/agreement-type', agreementType.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

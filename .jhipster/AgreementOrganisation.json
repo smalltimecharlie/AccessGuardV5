@@ -1,0 +1,56 @@
+{
+    "name": "AgreementOrganisation",
+    "fields": [
+        {
+            "fieldName": "sourceSystemAgreementId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "agreementType",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "agreementName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "organisation",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "agreementStatus",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "agreement",
+            "otherEntityRelationshipName": "agreementOrganisation",
+            "relationshipName": "agreement",
+            "otherEntityField": "agreementName"
+        }
+    ],
+    "changelogDate": "20190301151034",
+    "entityTableName": "agreement_organisation",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

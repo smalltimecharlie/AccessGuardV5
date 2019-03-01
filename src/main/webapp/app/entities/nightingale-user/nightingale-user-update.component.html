@@ -1,0 +1,87 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-nightingale-user-heading">Create or edit a Nightingale User</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!nightingaleUser.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="nightingaleUser.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="nightingaleUser.email" required pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$"/>
+                    <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.email?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.email?.errors?.pattern">
+                            This field should follow pattern for "Email".
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_active">Active</label>
+                    <input type="checkbox" class="form-control" name="active" id="field_active"
+                        [(ngModel)]="nightingaleUser.active" />
+                    <div [hidden]="!(editForm.controls.active?.dirty && editForm.controls.active?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.active?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cognitoUsername">Cognito Username</label>
+                    <input type="text" class="form-control" name="cognitoUsername" id="field_cognitoUsername"
+                        [(ngModel)]="nightingaleUser.cognitoUsername" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cognitoEvent">Cognito Event</label>
+                    <div>
+                        <div *ngIf="nightingaleUser.cognitoEvent" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(nightingaleUser.cognitoEventContentType, nightingaleUser.cognitoEvent)">open</a><br>
+                            <span class="pull-left">{{nightingaleUser.cognitoEventContentType}}, {{byteSize(nightingaleUser.cognitoEvent)}}</span>
+                            <button type="button" (click)="nightingaleUser.cognitoEvent=null;nightingaleUser.cognitoEventContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_cognitoEvent" (change)="setFileData($event, nightingaleUser, 'cognitoEvent', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="cognitoEvent" id="field_cognitoEvent"
+                        [(ngModel)]="nightingaleUser.cognitoEvent" />
+                    <input type="hidden" class="form-control" name="cognitoEventContentType" id="field_cognitoEventContentType"
+                        [(ngModel)]="nightingaleUser.cognitoEventContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cognitoSignupDate">Cognito Signup Date</label>
+                    <div class="d-flex">
+                        <input id="field_cognitoSignupDate" type="datetime-local" class="form-control" name="cognitoSignupDate" [(ngModel)]="cognitoSignupDate" placeholder="YYYY-MM-DD HH:mm"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_agreementOrganisation">Agreement Organisation</label>
+                    <select class="form-control" id="field_agreementOrganisation" name="agreementOrganisation" [(ngModel)]="nightingaleUser.agreementOrganisation" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="agreementOrganisationOption.id === nightingaleUser.agreementOrganisation?.id ? nightingaleUser.agreementOrganisation : agreementOrganisationOption" *ngFor="let agreementOrganisationOption of agreementorganisations; trackBy: trackAgreementOrganisationById">{{agreementOrganisationOption.organisation}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

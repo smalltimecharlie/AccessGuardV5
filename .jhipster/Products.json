@@ -1,0 +1,37 @@
+{
+    "name": "Products",
+    "fields": [
+        {
+            "fieldName": "productName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "productUrl",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "productsUsers",
+            "otherEntityRelationshipName": "products",
+            "relationshipName": "productsUsers",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190301151036",
+    "entityTableName": "products",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
